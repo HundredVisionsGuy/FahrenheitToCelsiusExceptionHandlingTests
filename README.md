@@ -10,7 +10,8 @@ You will write a math function titled, `fahrenheitToCelsius()` that receives a f
 
 * `fahrenheitToCelsius()` receives 1 input: an integer, float, or string (fahrenheit)
 * `fahrenheitToCelsius()` will try to convert the input to a float and if it is unable to convert a string to a float, it will return -9999 to indicate there was an error
-* `fahrenheitToCelsius()` calculates area using the following formula: `area * 0.000207`
+* `fahrenheitToCelsius()` converts temperatures in degrees Fahrenheit to Celsius by subtracting 32 and multiply by .5556 (or 5/9).
+ * Example: `(50°F - 32) x .5556 = 10°C`
 * `fahrenheitToCelsius()` needs to incorporate Exception Handling in addition to performing the expected function
 
 **Examples:**
