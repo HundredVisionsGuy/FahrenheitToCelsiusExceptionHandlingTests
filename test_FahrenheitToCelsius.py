@@ -3,31 +3,30 @@
 
 import unittest
 import MathFunctions
+import re
 
 class KnownValues(unittest.TestCase):
-    
-    ################################################
-    # test divisibility
-    ################################################
-    # for exception handling
-    def test_divisibility_forZeroDivisionErrorHandling(self):
-        # Capture the results of the function
-        self.assertEquals('error', MathFunctions.divisibility(10,0))
-    def test_divisibility_forValueErrorHandling(self):
-        self.assertEquals('error', MathFunctions.divisibility(10, 'five'))
-    # for expected results
-    def test_divisibility_forEvenlyDivisible(self):
-        result = MathFunctions.divisibility(21, 3)
-        self.assertEquals('divides evenly', result)
-    def test_divisibility_forNotEvenlyDivisible(self):
-        result = MathFunctions.divisibility(5,2)
-        self.assertEquals("doesn't divide evenly", result)
+    # Set up
+    def setUp(self):
+        # get text from script for regex tests
+        self.textfile = open('FahrenheitToCelsius.py', 'r')
+        self.scripttext = self.textfile.read()
+    # Tear down
+    def tearDown(self):
+        # close the file
+        self.textfile.close()
+    # Test regex search for a pattern in script
+    def test_try_cmd_present(self):
+        matches = re.findall("try:", self.scripttext)
+        match = matches[0]
+        self.assertEquals("try:", match)
+        
+    def test_except_block_present(self):
+        matches = re.findall("except ValueError:", self.scripttext)
+        matches += re.findall("except:", self.scripttext)
+        hasMatch = bool(matches)
+        self.assertEquals(True, hasMatch)
 
-    
-    ################################################
-    # test fahrenheitToCelsius
-    ################################################
-    # For exception Handling
     def test_fahrenheitToCelsius_forTypeError(self):
         # Capture the results of the function
         result = MathFunctions.fahrenheitToCelsius("str")
@@ -63,47 +62,7 @@ class KnownValues(unittest.TestCase):
         result = MathFunctions.fahrenheitToCelsius(50)
         # Check for expected output
         self.assertEqual(10.0, result)
-        
-    ################################################
-    # Test celsiusToFahrenheit()
-    ################################################
-    # For exception Handling
-    def test_celsiusToFahrenheit_forTypeError(self):
-        # Capture the results of the function
-        result = MathFunctions.celsiusToFahrenheit("str")
-        # Check for expected output
-        self.assertEqual(-9999, result)
-    def test_celsiusToFahrenheit_forTypeErrorReturn(self):
-        # Capture the results of the function
-        #result = MathFunctions.fahrenheitToCelsius("str")
-        # Check for expected output
-        self.assertRaises(TypeError, MathFunctions.celsiusToFahrenheit("str"))
 
-    # For expected output
-    def test_celsiusToFahrenheit_for0C(self):
-        # Capture the results of the function
-        result = MathFunctions.celsiusToFahrenheit(0)
-        # Check for expected output
-        self.assertEqual(32.0, result)
-
-    def test_celsiusToFahrenheit_for100C(self):
-        # Capture the results of the function
-        result = MathFunctions.celsiusToFahrenheit(100)
-        # Check for expected output
-        self.assertEqual(212.0, result)
-
-    def test_celsiusToFahrenheit_for55C(self):
-        # Capture the results of the function
-        result = MathFunctions.celsiusToFahrenheit(55)
-        # Check for expected output
-        self.assertEqual(131.0, result)
-        
-
-    def test_celsiusToFahrenheit_forMinus50C(self):
-        # Capture the results of the function
-        result = MathFunctions.celsiusToFahrenheit(-50)
-        # Check for expected output
-        self.assertEqual(-58.0, result)
 
 # Run the tests
 if __name__ == '__main__':
