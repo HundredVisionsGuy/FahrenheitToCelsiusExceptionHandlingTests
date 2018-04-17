@@ -3,7 +3,7 @@
 # You will write a function titled, fahrenheitToCelsius() that...
 #       receives a floating point number (fahrenheit)
 #       calculates celsius
-#       Throws a TypeError if input cannot be converted to a floating point
+#       Raises a TypeError if input cannot be converted to a floating point
 #           If so, it will return -9999
 #       returns a floating point number (celsius)
 

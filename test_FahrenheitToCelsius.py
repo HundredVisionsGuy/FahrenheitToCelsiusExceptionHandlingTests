@@ -2,7 +2,7 @@
 # Tests Temp Converter functions
 
 import unittest
-import MathFunctions
+from FahrenheitToCelsius import fahrenheitToCelsius
 import re
 
 class KnownValues(unittest.TestCase):
@@ -29,37 +29,37 @@ class KnownValues(unittest.TestCase):
 
     def test_fahrenheitToCelsius_forTypeError(self):
         # Capture the results of the function
-        result = MathFunctions.fahrenheitToCelsius("str")
+        result = fahrenheitToCelsius("str")
         # Check for expected output
         self.assertEqual(-9999, result)
     def test_fahrenheitToCelsius_forTypeErrorReturn(self):
         # Capture the results of the function
-        #result = MathFunctions.fahrenheitToCelsius("str")
+        #result = fahrenheitToCelsius("str")
         # Check for expected output
-        self.assertRaises(TypeError, MathFunctions.fahrenheitToCelsius("str"))
+        self.assertRaises(TypeError, fahrenheitToCelsius("str"))
 
     # For expected results (no exceptions...get it?)
     def test_fahrenheitToCelsius_for212F(self):
         # Capture the results of the function
-        result = MathFunctions.fahrenheitToCelsius(212)
+        result = fahrenheitToCelsius(212)
         # Check for expected output
         self.assertEqual(100.0, result)
 
     def test_fahrenheitToCelsius_for32F(self):
         # Capture the results of the function
-        result = MathFunctions.fahrenheitToCelsius(32)
+        result = fahrenheitToCelsius(32)
         # Check for expected output
         self.assertEqual(0.0, result)
 
     def test_fahrenheitToCelsius_for5F(self):
         # Capture the results of the function
-        result = MathFunctions.fahrenheitToCelsius(5)
+        result = fahrenheitToCelsius(5)
         # Check for expected output
         self.assertEqual(-15.0, result)
     
     def test_fahrenheitToCelsius_for50F(self):
         # Capture the results of the function
-        result = MathFunctions.fahrenheitToCelsius(50)
+        result = fahrenheitToCelsius(50)
         # Check for expected output
         self.assertEqual(10.0, result)
 
